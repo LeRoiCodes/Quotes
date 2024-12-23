@@ -1,14 +1,23 @@
 // import React from 'react'
 
+import { useState } from "react";
 import Header2 from "./Header2"
 import UserDashboardView from "./QuoteRequest/UserDashboardView"
 import MainLayout from "./QuoteReview/MainLayout"
+import Confirm from "./QuoteReview/Confirm";
+import SendQuote from "./QuoteReview/SendQuote";
+import Success from "./QuoteReview/Success";
 
 const QuoteReview = () => {
+
+    const [isModal,setIsModal] = useState(false);
+    const [isSending,setIsSending] = useState(false);
+    const [isSuccess ,setIsSuccess] = useState(false);
+
   return (
-    <>
+    <div className={``}>
     <Header2 />
-    <div className="box-border flex justify-start items-stretch flex-col grow-0 shrink-0 basis-auto pt-6 pb-[43px] px-8">
+    <div className={`box-border flex justify-start items-stretch flex-col grow-0 shrink-0 basis-auto pt-6 pb-[43px] px-8 ${isModal || isSending ||isSuccess ? "opacity-10" : "" }`}>
       <div className="box-border flex justify-start items-start flex-col gap-14 grow-0 shrink-0 basis-auto">
         <div className="box-border flex justify-start items-start flex-col gap-8 self-stretch grow-0 shrink-0 basis-auto">
             {/* Page title */}
@@ -30,13 +39,16 @@ const QuoteReview = () => {
                 <UserDashboardView tab={"3"} />
                 {/* Request for quote */}
                 {/* <div className="border bg-[white] box-border flex justify-start items-start flex-row gap-5 self-stretch grow-0 shrink-0 basis-auto pt-8 pb-6 px-6 rounded-[10px] border-solid border-[#e4e7ec]"> */}
-                    <MainLayout />
+                    <MainLayout openModal={() => {setIsModal(true)}}/>
                 {/* </div> */}
             </div>
         </div>
     </div>
     </div>
-    </>
+    {isModal && <Confirm onclose={() => setIsModal(false)} setIsSending={() => setIsSending(true)}/>}
+    {isSending && <SendQuote onclose={() => setIsSending(false)} setIsSuccess={() => setIsSuccess(true)}/>}
+    {isSuccess && <Success onclose={() => setIsSuccess(false)} />}
+    </div>
   )
 }
 
