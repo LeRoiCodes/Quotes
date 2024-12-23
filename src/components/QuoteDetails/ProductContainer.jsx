@@ -1,6 +1,6 @@
 // import React from 'react'
 
-import Table from "./table"
+import Table from "./Table"
 import Total from "./Total"
 import signDoc from "../../assets/sign-doc.svg"
 import { FaChevronDown } from "react-icons/fa6"
