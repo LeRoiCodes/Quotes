@@ -1,7 +1,7 @@
 // import React from 'react'
 
 import { FaChevronDown } from "react-icons/fa6"
-import Upload from "./upload"
+import Upload from "./Upload"
 
 // import ItemsBox from "./ItemsBox"
 
